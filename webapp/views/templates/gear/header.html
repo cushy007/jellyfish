@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs mt-n3">
+<!--
+	mt-n3 is for negative margin but it is not enabled by default :( see here : https://getbootstrap.com/docs/5.2/utilities/spacing/#negative-margin
+-->
+	{% for item in available_items %}
+	<li class="nav-item">
+		<a id={{ "tab-l3-%s" % (item.type, ) }} class="nav-link {% if item.type == active_item.type %}active{% endif %}" href="/gear/{{ active_sub_tab.name }}/{{ item.type }}">{{ item.tab_name }}</a>
+	</li>
+	{% endfor %}
+</ul>
+

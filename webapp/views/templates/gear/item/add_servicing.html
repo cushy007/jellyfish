@@ -1,0 +1,6 @@
+{% include "/gear/header.html" %}
+{% import "/macros.html" as macros %}
+
+<h1>{{ gettext("Servicing of %(item)s", item=item) }}</h1>
+
+{{ macros.new_form(form, _("Validate"), "/gear/item/add_servicing") }}

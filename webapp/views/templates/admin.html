@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+	{% for tab in available_admin_tabs %}
+	<li class="nav-item">
+		{% if active_admin_tab.name == tab.name %}
+		<a class="nav-link active" href="/admin/{{ tab.name }}">{{ tab.i18n }}</a>
+		{% else %}
+		<a class="nav-link" href="/admin/{{ tab.name }}">{{ tab.i18n }}</a>
+		{% endif %}
+	</li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,7 @@
+{% import "/macros.html" as macros %}
+<div id="overview">
+
+		<h1>{{ _("Every loans") }}</h1>
+		{{ macros.dyn_table("loans", url_for("main_views.statistics"), has_create_button=False) }}
+
+</div>

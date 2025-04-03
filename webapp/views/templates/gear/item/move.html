@@ -1,0 +1,4 @@
+{% include "/gear/header.html" %}
+{% import "/macros.html" as macros %}
+
+{{ macros.new_form(form, _("Move"), "/gear/move", on_cancel="/gear") }}

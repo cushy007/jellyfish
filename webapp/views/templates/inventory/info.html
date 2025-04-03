@@ -1,0 +1,108 @@
+{% import "/macros.html" as macros %}
+<div id="inventory_info">
+		<h1>{{ gettext("%(date)s's inventory", date=date) }}</h1>
+
+		{% if prices_by_item_type %}
+		<div class="mt-1">
+			<table name="prices_by_item_type">
+				<thead>
+					<tr>
+						<th>{{ _("Items estimations") }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item, price in prices_by_item_type %}
+					<tr>
+						<td>{{ item }}</td>
+						<td><b>{{ price }}€<b></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endif %}
+
+		{% if nb_of_items_by_type %}
+		<div class="mt-1">
+			<table name="nb_of_items_by_type">
+				<thead>
+					<tr>
+						<th>{{ _("Number of present items") }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item, nb in nb_of_items_by_type %}
+					<tr>
+						<td>{{ item }}</td>
+						<td><b>{{ nb }}<b></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endif %}
+
+		{% if total_price %}
+		<div class="mt-1">
+			{{ _("Total inventory estimation") }} : <b>{{ total_price }}€</b>
+		</div>
+		{% endif %}
+
+		{% if missing_items %}
+		<div class="mt-3">
+			<table name="missing_items">
+				<thead>
+					<tr>
+						<th>{{ _("Missing items") }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in missing_items %}
+					<tr>
+						<td>{{ item }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endif %}
+
+		{% if unusable_items %}
+		<div class="mt-3">
+			<table name="unusable_items">
+				<thead>
+					<tr>
+						<th>{{ _("Unusable items") }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in unusable_items %}
+					<tr>
+						<td>{{ item }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endif %}
+
+		{% if uninventoried_items %}
+		<div class="mt-3">
+			<table name="uninventoried_items">
+				<thead>
+					<tr>
+						<th>{{ _("Uninventoried items") }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in uninventoried_items %}
+					<tr>
+						<td>{{ item }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endif %}
+
+</div>

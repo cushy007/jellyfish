@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col">
+		<a type="button" id="generate-qrcodes" class="btn btn-primary col-sm-12" href="/admin/qrcode/generate">{{ _("Generate QR Codes") }}</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+	{% import "/macros.html" as macros %}
+	{{ macros.new_form(form, _("Generate"), "/admin/qrcode/generate", on_cancel="/admin/qrcode") }}
+	</div>
+</div>

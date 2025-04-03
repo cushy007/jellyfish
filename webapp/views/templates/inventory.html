@@ -1,0 +1,20 @@
+{% import "/macros.html" as macros %}
+<div class="row">
+	{% if is_in_progress %}
+	<div class="col">
+		<a id="btn-stop-campaign" class="btn btn-warning col-sm-3 mt-3" href="/inventory?stop=true">{{ gettext("Stop %(date)s's inventory campaign", date=running_inventory_date) }}</a>
+	</div>
+	<div class="form-group mt-5">
+		{{ _("Start inventory of these items:") }}
+		{{ macros.new_form(form, has_submit=False) }}
+	</div>
+	{{ macros.dyn_table("current_remaining_items", url_for("inventory_views.inventory_tab"), has_create_button=False, has_searchbox=False) }}
+	{% else %}
+		{{ macros.dyn_table("inventories", url_for("inventory_views.inventory_tab"), has_create_button=False, has_searchbox=False) }}
+		{% if not has_been_started_today %}
+			<div class="col">
+				<a id="btn-start-campaign" class="btn btn-primary col-sm-3 mt-4" href="/inventory?start=true">{{ _("Start inventory campaign") }}</a>
+			</div>
+		{% endif %}
+	{% endif %}
+</div>

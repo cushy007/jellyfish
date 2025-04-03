@@ -1,0 +1,45 @@
+{% import "/macros.html" as macros %}
+<div id="overview">
+
+		<h1>{{ _("Loans") }}</h1>
+		{{ macros.dyn_table("loans", url_for("main_views.overview"), has_create_button=False) }}
+
+		{% if items_to_service %}
+		<h1>{{ _("Need of servicing") }}</h1>
+		<table name="need_servicing">
+			<thead>
+				<tr>
+					<th>{{ _("Item") }}</th>
+					<th>{{ _("Remaining usages") }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in items_to_service %}
+				<tr>
+					<td><a href="/gear/service?id={{ row[0] }}">{{ row[1] }}</a></td>
+					<td>{{ row[2] }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+
+		{% if in_servicing %}
+		<h1>{{ _("In servicing") }}</h1>
+		<table name="in_servicing">
+			<thead>
+				<tr>
+					<th>{{ _("Item") }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in in_servicing %}
+				<tr>
+					<td><a href="/servicing/add?id={{ row[0] }}">{{ row[1] }}</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+
+</div>

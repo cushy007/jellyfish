@@ -1,0 +1,4 @@
+{% include "/gear/header.html" %}
+{% import "/macros.html" as macros %}
+
+{{ macros.new_form(form, _("Create"), "/gear/%s/%s/add_item" % (active_sub_tab.name, active_item.type)) }}

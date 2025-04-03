@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col">
+		<a type="button" id="backup-db" class="btn btn-primary col-sm-12" href="/admin/tools/db/backup">{{ _("Backup DB") }}</a>
+	</div>
+</div>
+{% if current_user.is_admin %}
+	{% import "/macros.html" as macros %}
+	{{ macros.new_form(form_db_restore, _("Restore"), "/admin/tools/db/restore") }}
+	{{ macros.new_form(form_members_import, _("Import"), "/admin/tools/member/import") }}
+{% endif %}
+

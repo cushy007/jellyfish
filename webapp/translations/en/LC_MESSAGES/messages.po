@@ -1,0 +1,634 @@
+# English translations for PROJECT.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#, python-format
+msgid "%(date)s's inventory"
+msgstr ""
+
+#, python-format
+msgid "%s borrowed by %s"
+msgstr "%s borrowed by %s"
+
+#, python-format
+msgid "%s has already been borrowed"
+msgstr "%s has already been borrowed"
+
+msgid "Accessories"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Add servicing"
+msgstr ""
+
+msgid "Add state"
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+msgid "Adult"
+msgstr ""
+
+msgid "Air source"
+msgstr ""
+
+msgid "Auxiliary"
+msgstr ""
+
+msgid "Auxiliary regulator"
+msgstr ""
+
+msgid "Auxiliary regulators"
+msgstr ""
+
+msgid "BCD"
+msgstr ""
+
+msgid "BCDs"
+msgstr ""
+
+msgid "Backpack"
+msgstr ""
+
+msgid "Backpacks"
+msgstr ""
+
+msgid "Backup DB"
+msgstr ""
+
+msgid "Bcd"
+msgstr ""
+
+msgid "Boot"
+msgstr ""
+
+msgid "Boots"
+msgstr ""
+
+msgid "Brand"
+msgstr ""
+
+msgid "Child"
+msgstr ""
+
+msgid "Cold water compliant"
+msgstr ""
+
+msgid "Collect"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Computers"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "DIN"
+msgstr ""
+
+msgid "Database backup zip file"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Day (2 dives)"
+msgstr ""
+
+msgid "Entry date"
+msgstr ""
+
+msgid "Every loans"
+msgstr ""
+
+msgid "Fastening"
+msgstr ""
+
+msgid "Fin"
+msgstr ""
+
+msgid "Fins"
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "For apnea"
+msgstr ""
+
+msgid "Frisbee"
+msgstr ""
+
+msgid "Frisbees"
+msgstr ""
+
+msgid "From date"
+msgstr ""
+
+msgid "Gear"
+msgstr ""
+
+msgid "Gender"
+msgstr ""
+
+msgid "Generate"
+msgstr ""
+
+msgid "Generate QR Codes"
+msgstr ""
+
+msgid "Give back"
+msgstr ""
+
+msgid "Glove"
+msgstr ""
+
+msgid "Gloves"
+msgstr ""
+
+msgid "Guarantee"
+msgstr ""
+
+msgid "Hood"
+msgstr ""
+
+msgid "Hoods"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "In servicing"
+msgstr ""
+
+msgid "Invalid data"
+msgstr ""
+
+msgid "Inventories"
+msgstr ""
+
+msgid "Inventory info"
+msgstr ""
+
+msgid "Is present"
+msgstr ""
+
+msgid "Is serviced"
+msgstr ""
+
+msgid "Is usable"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Item caracteristics"
+msgstr ""
+
+msgid "Item info"
+msgstr ""
+
+msgid "Item reference"
+msgstr ""
+
+msgid "Item type"
+msgstr ""
+
+msgid "Items estimations"
+msgstr ""
+
+msgid "Lamp"
+msgstr ""
+
+msgid "Lamps"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
+msgid "License number"
+msgstr ""
+
+msgid "Loans"
+msgstr ""
+
+msgid "Main regulator"
+msgstr ""
+
+msgid "Main regulators"
+msgstr ""
+
+msgid "Man"
+msgstr ""
+
+msgid "Manometer"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Masks"
+msgstr ""
+
+msgid "Material"
+msgstr ""
+
+msgid "Maximum American size"
+msgstr ""
+
+msgid "Maximum size"
+msgstr ""
+
+msgid "Measure"
+msgstr ""
+
+msgid "Member's name"
+msgstr ""
+
+msgid "Members"
+msgstr ""
+
+msgid "Members csv file"
+msgstr ""
+
+msgid "Minimum American size"
+msgstr ""
+
+msgid "Minimum size"
+msgstr ""
+
+msgid "Missing items"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "Modify"
+msgstr ""
+
+msgid "Modify item"
+msgstr ""
+
+msgid "Monfins"
+msgstr ""
+
+msgid "Monofin"
+msgstr ""
+
+msgid "Monofins"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Need of servicing"
+msgstr ""
+
+msgid "Nitrox compliant"
+msgstr ""
+
+msgid "Nothing to give back"
+msgstr ""
+
+msgid "Number of present items"
+msgstr ""
+
+msgid "Octopus"
+msgstr ""
+
+msgid "Orphans"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "Owner club"
+msgstr ""
+
+msgid "Oxymeter"
+msgstr ""
+
+msgid "Oxymeters"
+msgstr ""
+
+msgid "Premises key"
+msgstr ""
+
+msgid "Premises keys"
+msgstr ""
+
+msgid "Pressure"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "QRCodes"
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "Reference"
+msgstr ""
+
+msgid "Regulators"
+msgstr ""
+
+msgid "Reintegrate"
+msgstr ""
+
+msgid "Remaining items"
+msgstr ""
+
+msgid "Remaining usages"
+msgstr ""
+
+msgid "Report file"
+msgstr ""
+
+msgid "Restart inventory"
+msgstr ""
+
+msgid "Restart this inventory ?"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "Ring"
+msgstr ""
+
+msgid "Rings"
+msgstr ""
+
+msgid "Scanned text is invalid"
+msgstr ""
+
+msgid "Second stage"
+msgstr ""
+
+msgid "Semi-dry"
+msgstr ""
+
+msgid "Serial number"
+msgstr ""
+
+msgid "Servicing date"
+msgstr ""
+
+#, python-format
+msgid "Servicing of %(item)s"
+msgstr ""
+
+msgid "Servicings"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Snorkeling"
+msgstr ""
+
+msgid "Snorkle"
+msgstr ""
+
+msgid "Snorkles"
+msgstr ""
+
+msgid "Sock"
+msgstr ""
+
+msgid "Socks"
+msgstr ""
+
+msgid "Split bottom / up"
+msgstr ""
+
+msgid "Stabilization"
+msgstr ""
+
+msgid "Start inventory campaign"
+msgstr ""
+
+msgid "Start inventory of these items:"
+msgstr ""
+
+#, python-format
+msgid "State of %(item)s"
+msgstr ""
+
+msgid "States"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+#, python-format
+msgid "Stop %(date)s's inventory campaign"
+msgstr ""
+
+msgid "Sucker"
+msgstr ""
+
+msgid "Suckers"
+msgstr ""
+
+msgid "Suit"
+msgstr ""
+
+msgid "Suits"
+msgstr ""
+
+msgid "Swimming pool (1 dive)"
+msgstr ""
+
+msgid "Switch to manual mode"
+msgstr ""
+
+msgid "Switch to scan mode"
+msgstr ""
+
+msgid "Tank"
+msgstr ""
+
+msgid "Tanks"
+msgstr ""
+
+msgid "Thickness"
+msgstr ""
+
+msgid "To date"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Total inventory estimation"
+msgstr ""
+
+msgid "Trash item"
+msgstr ""
+
+msgid "Trash this item ?"
+msgstr ""
+
+msgid "Trashcan"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Uninventoried items"
+msgstr ""
+
+msgid "Untrash item"
+msgstr ""
+
+msgid "Unusable items"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Usage counter"
+msgstr ""
+
+msgid "Valid until"
+msgstr ""
+
+msgid "Validate"
+msgstr ""
+
+msgid "Wear"
+msgstr ""
+
+msgid "Week (10 dives)"
+msgstr ""
+
+msgid "Week-end (4 dives)"
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+msgid "Weights"
+msgstr ""
+
+msgid "With shorty"
+msgstr ""
+
+msgid "Woman"
+msgstr ""
+
+msgid "Yoke"
+msgstr ""
+
+msgid "manometer"
+msgstr ""
+
+msgid "second_stage"
+msgstr ""
+
+#~ msgid "Add item state"
+#~ msgstr ""
+
+#~ msgid "Campaign"
+#~ msgstr ""
+
+#~ msgid "Chose an action"
+#~ msgstr ""
+
+#~ msgid "Inventories"
+#~ msgstr ""
+
+#~ msgid "Latest"
+#~ msgstr ""
+
+#~ msgid "Missing items from %(date)s's inventory"
+#~ msgstr ""
+
+#~ msgid "Supervisor"
+#~ msgstr ""
+
+#~ msgid "Borrow"
+#~ msgstr ""
+
+#~ msgid "Delete this member ?"
+#~ msgstr ""
+
+#~ msgid "Service"
+#~ msgstr ""
+
+#~ msgid "Day"
+#~ msgstr ""
+
+#~ msgid "Estimation"
+#~ msgstr ""
+
+#~ msgid "Swimming pool"
+#~ msgstr ""
+
+#~ msgid "Total estimations of the items"
+#~ msgstr ""
+
+#~ msgid "Week"
+#~ msgstr ""
+
+#~ msgid "Week-end"
+#~ msgstr ""
+
+#~ msgid "Inventory"
+#~ msgstr ""
+
+#~ msgid "Delete"
+#~ msgstr ""
+
+#~ msgid "Delete this state ?"
+#~ msgstr ""
+
+#~ msgid "Loan"
+#~ msgstr ""
+
+#~ msgid "Member"
+#~ msgstr ""
+
+#~ msgid "Servicings"
+#~ msgstr ""
+
+#~ msgid "To item reference"
+#~ msgstr ""
+
+#~ msgid "To item type"
+#~ msgstr ""
+
+#~ msgid "first_stage"
+#~ msgstr "First stage"
+

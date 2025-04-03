@@ -1,0 +1,7 @@
+{% import "/macros.html" as macros %}
+
+{% if form %}
+{{ macros.new_form(form, _("Give back"), "/loan/reintegration") }}
+{% else %}
+<h1>{{ _("Nothing to give back") }}</h1>
+{% endif %}

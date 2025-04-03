@@ -1,0 +1,6 @@
+{% include "/gear/header.html" %}
+{% import "/macros.html" as macros %}
+
+
+<h2>{{ _("Gear") }}</h2>
+{{ macros.new_form(form, _("Modify"), "/gear/item/modify_state") }}

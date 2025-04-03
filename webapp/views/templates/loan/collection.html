@@ -1,0 +1,11 @@
+{% import "/macros.html" as macros %}
+
+{{ macros.new_form(form, _("Collect"), url_for(".loan_collection_json"), has_submit=not use_scanner) }}
+{% if use_scanner %}
+<div id="barcode-reader-field" class="shown"></div>
+	{% for ref in fake_qrcodes %}
+	<button class="btn btn-danger fake-qrcode-btn mb-3">{{ ref }}</button>
+	{% endfor %}
+{% endif %}
+<div id="borrow-popup" class="alert hidden" role="alert"></div>
+<button type="button" id="degraded-mode-btn" class="btn btn-primary mt-5 {{ 'active' if not use_scanner else '' }}" data-bs-toggle="button" autocomplete="off">{{ _('Switch to manual mode') if use_scanner else _('Switch to scan mode') }}</button>
