@@ -1,0 +1,28 @@
+[secrets]
+session_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+[customization]
+title = Jellyfish
+clubs = My club;Another club
+
+[qrcode]
+item = https://gear.myclub.org/%%s
+license = https://l.ffessm.fr/c.asp?id=%%s_85648D
+popup_timeout = 2
+#fake_qrcodes = C1;D2;OC3
+
+[ref_prefixes]
+first_stage = D
+first_stage_auxiliary = OC
+suit = C
+bcd = S
+backpack = BP
+boot = B
+glove = G
+hood = CG
+fin = P
+mask = M
+snorkle = T
+computer = O
+lamp = L
+premises_key = K
