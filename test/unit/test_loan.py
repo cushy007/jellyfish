@@ -4,10 +4,15 @@
 #
 from webapp.views.loan import get_scanned_code_content
 
+CONFIG_QRCODE = {
+	'item': r"https://gear.jellyfish.org/%s",
+	'license': "https://l.ffessm.fr/c.asp?id=%%s_85648D",
+}
+
 
 def test01a():
 	""" Found item """
-	assert get_scanned_code_content("https://gear.jellyfish.org/M3") == {
+	assert get_scanned_code_content("https://gear.jellyfish.org/M3", config_dict=CONFIG_QRCODE) == {
 		'item_type': "mask",
 		'item_reference': "3",
 	}
@@ -15,7 +20,7 @@ def test01a():
 
 def test01b():
 	""" Found item (confusing) """
-	assert get_scanned_code_content("https://gear.jellyfish.org/CG3") == {
+	assert get_scanned_code_content("https://gear.jellyfish.org/CG3", config_dict=CONFIG_QRCODE) == {
 		'item_type': "hood",
 		'item_reference': "3",
 	}

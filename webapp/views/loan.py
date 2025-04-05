@@ -42,11 +42,12 @@ def loan_tab():
 	return redirect(url_for(".loan_collection_tab"))
 
 
-def get_scanned_code_content(text):
-	item_start = CONFIG_QRCODE['item'].replace(r"%s", r"")
+def get_scanned_code_content(text, config_dict=None):
+	config_dict = config_dict or CONFIG_QRCODE
+	item_start = config_dict['item'].replace(r"%s", r"")
 	if text.startswith(item_start):
 		_LOGGER.info("Will search for scanned item '%s'", text)
-		item_template = CONFIG_QRCODE['item'].replace(r"%s", r"([A-Z]*)([0-9]*)")
+		item_template = config_dict['item'].replace(r"%s", r"([A-Z]*)([0-9]*)")
 		match = re.search(item_template, text)
 		item_type, item_reference = match.group(1), match.group(2)
 		item_type = [k for k, v in CONFIG_REF_PREFIXES.items() if item_type == v][0]
@@ -54,9 +55,9 @@ def get_scanned_code_content(text):
 			'item_type': item_type,
 			'item_reference': item_reference,
 		}
-	elif text.startswith(CONFIG_QRCODE['license'].split('=')[0]):
+	elif text.startswith(config_dict['license'].split('=')[0]):
 		_LOGGER.info("Will search for scanned license '%s'", text)
-		license_template = CONFIG_QRCODE['license'].replace(r"%s", r"(.*)")
+		license_template = config_dict['license'].replace(r"%s", r"(.*)")
 		try:
 			license_nb = re.search(license_template.split('=')[1], text.split('=')[1]).group(1)
 		except:
