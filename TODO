@@ -8,8 +8,8 @@ MANUAL TEST BEFORE DEPLOYMENT
 	- scan its QR code again for another member -> green popup and loan OK on the overview
 
 
-OVH + GITLAB
-	- cleanup Git history
+OVH + GITHUB
+	- manage backup
 	- afficher une page de garde/redirection sur VP Dive si on est pas connecté
 
 
