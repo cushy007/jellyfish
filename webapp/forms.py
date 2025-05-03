@@ -7,24 +7,23 @@ import logging
 import shlex
 import subprocess
 from os import chdir, getcwd
-from os.path import join
 from shutil import rmtree
 from tempfile import mkdtemp
 from zipfile import ZipFile
 
-from flask_babel import gettext as _
-from flask_babel import lazy_gettext as _l
-from weblib.forms import (
-	BaseForm, BooleanField, DateField, DecimalField, DoubleSelectField, FileField, HiddenField, IntegerField, PriceField,
-	SelectField, TextAreaField, TextField
-)
-from weblib.models import flask_db
+from flask_babel import gettext as _, lazy_gettext as _l
+from os.path import join
+from webapp.requests import delete_all_members, get_borrowed_items
 from weblib.requests import DatabaseException
-from weblib.utils import Shell
 
 from webapp import CONFIG_CUSTOMIZATION
 from webapp.models import Item, ItemState, Member, Servicing
-from webapp.requests import delete_all_members, get_borrowed_items
+from weblib.forms.fields import (BooleanField, DateField, DecimalField, DoubleSelectField, FileField, HiddenField,
+	IntegerField, PriceField, SelectField, TextAreaField, TextField)
+from weblib.forms.forms import BaseForm
+from weblib.models import flask_db
+from weblib.utils import Shell
+
 
 _LOGGER = logging.getLogger(__name__)
 
