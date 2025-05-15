@@ -233,6 +233,50 @@ class TestMembers(JellyfishFixtures):
 		self.switch_to_tab("inventory")
 		self.is_forbidden()
 
+	def test06a(self, start_app, treasurer, items, start_driver):
+		""" Can't add a duplicated member's name and firstname (strip trailing spaces) """
+		self.login_as("treasurer")
+		self.switch_to_tab("member")
+		self.click_element_by_id("btn-create-member")
+		self.fill_form({
+			'first_name': "John",
+			'last_name': "Rambo",
+		}, submit_btn_text=_("Create"))
+
+		sleep(.2)
+		self.click_element_by_id("btn-create-member")
+		self.fill_form({
+			'first_name': " John ",
+			'last_name': "Rambo ",
+		}, submit_btn_text=_("Create"))
+		assert "dupliquée" in self.driver.find_element(By.CSS_SELECTOR, 'body p').text  # TODO use self.is_server_error()
+
+	def test06b(self, start_app, treasurer, items, start_driver):
+		""" Member's name and firstname can't collide on modification """
+		self.login_as("treasurer")
+		self.switch_to_tab("member")
+		self.click_element_by_id("btn-create-member")
+		self.fill_form({
+			'first_name': "John",
+			'last_name': "Rambo",
+		}, submit_btn_text=_("Create"))
+
+		sleep(.2)
+		self.click_element_by_id("btn-create-member")
+		self.fill_form({
+			'first_name': "John2",
+			'last_name': "Rambo",
+		}, submit_btn_text=_("Create"))
+
+		sleep(.3)
+		self.click_table_row("member", 2)
+		self.click_modal_button("update")
+		self.fill_form({
+			'first_name': "John",
+			'last_name': "Rambo",
+		})
+		assert "dupliquée" in self.driver.find_element(By.CSS_SELECTOR, 'body p').text  # TODO use self.is_server_error()
+
 
 class TestLoans(JellyfishFixtures):
 

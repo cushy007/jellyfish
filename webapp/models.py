@@ -181,6 +181,9 @@ class Member(BaseModel):
 	guarantee_end_date = DateField(null=True)
 	guarantee_end_date.i18n = _l("Valid until")
 
+	class Meta:
+		constraints = [SQL('UNIQUE (last_name, first_name)')]
+
 
 class Servicing(BaseModel):
 	item_id = ForeignKeyField(Item, backref="items")
@@ -261,7 +264,7 @@ MODELS = [
 ]
 
 
-VERSION = 11
+VERSION = 12
 
 class Migrator(AbstractMigrator):
 	"""
@@ -345,3 +348,8 @@ class Migrator(AbstractMigrator):
 				query = ItemState.update({'price': decimal_price}).where(ItemState.id == itemstate.id)
 				if query.execute() != 1:
 					raise MigratorException("Could not upgrade item state's price")
+
+	def migrate_to_version_12(self):
+		self._migrate(
+			self._migrator.add_constraint('member', 'member_last_name_first_name_key', SQL('UNIQUE (last_name, first_name)')),
+		)
