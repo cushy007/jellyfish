@@ -498,6 +498,7 @@ def get_items_last_state(item_type):
 		.join(Item)
 		.where(Item.type == item_type)
 		.dicts()
+		.order_by(ItemState.date.asc())
 	)
 	min_date = date(MINYEAR, 1, 1)
 	ret = {}
