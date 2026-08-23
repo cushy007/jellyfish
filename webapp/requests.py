@@ -547,6 +547,12 @@ def create_inventory(**kwargs):
 	Inventory.create(**kwargs)
 
 
+def delete_inventory(inventory_id):
+	query = Inventory.delete().where(Inventory.id == inventory_id)
+	if query.execute() != 1:
+		raise DatabaseException("Could not delete inventory '%s'" % inventory_id)
+
+
 def get_inventories():
 	columns = (Inventory.date, Inventory.in_progress)
 	query = (Inventory

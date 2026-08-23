@@ -6,22 +6,21 @@ import logging
 from datetime import date
 
 from flask import Blueprint, jsonify, redirect, request, session, url_for
-from flask_babel import gettext as _
-from flask_babel import lazy_gettext as _l
+from flask_babel import gettext as _, lazy_gettext as _l
 from flask_login import login_required
+from webapp.requests import (create_inventory, delete_inventory, get_current_inventory_remaining_items, get_inventories,
+	get_inventory, get_inventory_date, get_inventory_items_select_list, get_inventory_missing_items,
+	get_inventory_unusable_items, get_items_count_table, get_items_estimations, get_items_estimations_table,
+	get_latest_inventory_date, get_running_inventory_date, get_uninventoried_items, restart_inventory_campaign,
+	stop_inventory_campaign)
+
+from webapp.forms import InventorySelectForm
+from webapp.models import Item
+from webapp.roles import ROLE_LENDER
 from weblib.roles import ROLE_USER, roles_required
 from weblib.table import Table
 from weblib.views import site
 
-from webapp.forms import InventorySelectForm
-from webapp.models import Item
-from webapp.requests import (
-	create_inventory, get_current_inventory_remaining_items, get_inventories, get_inventory, get_inventory_date,
-	get_inventory_items_select_list, get_inventory_missing_items, get_inventory_unusable_items, get_items_count_table,
-	get_items_estimations, get_items_estimations_table, get_latest_inventory_date, get_running_inventory_date,
-	get_uninventoried_items, restart_inventory_campaign, stop_inventory_campaign
-)
-from webapp.roles import ROLE_LENDER
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -108,6 +107,7 @@ def inventory_inventories_table():
 	table.buttons = (
 		{'href': "/inventory/info", 'i18n': _l("Inventory info")},
 		{'href': "/inventory/restart", 'i18n': _l("Restart inventory"), 'confirmation_message': _l("Restart this inventory ?")},
+		{'href': "/inventory/delete", 'i18n': _l("Delete inventory"), 'confirmation_message': _l("Delete this inventory ?")},
 	)
 	return jsonify(table.dict)
 
@@ -139,4 +139,13 @@ def inventory_restart():
 	session_inventory = session.setdefault('inventory', {})
 	session_inventory['current_item_type'] = ""
 	session.modified = True
+	return redirect(url_for(".inventory_tab"))
+
+
+@inventory_views.route('/inventory/delete')
+@roles_required(ROLE_USER, ROLE_LENDER)
+def inventory_delete():
+	inventory_id = request.args.get('id')
+	_LOGGER.info(f"Delete the inventory with id '%s'", inventory_id)
+	delete_inventory(inventory_id)
 	return redirect(url_for(".inventory_tab"))
