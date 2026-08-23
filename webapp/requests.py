@@ -687,6 +687,7 @@ def get_uninventoried_items(at_date):
 		.join(ItemState, JOIN.LEFT_OUTER)
 		.where(
 			(~fn.EXISTS(subq))
+			& (Item.type != ITEM_TYPE_SECOND_STAGE)
 		)
 		.order_by(Item.type, Item.reference)
 		.distinct()
