@@ -119,6 +119,12 @@ msgstr ""
 msgid "Day (2 dives)"
 msgstr ""
 
+msgid "Delete inventory"
+msgstr ""
+
+msgid "Delete this inventory ?"
+msgstr ""
+
 msgid "Entry date"
 msgstr ""
 

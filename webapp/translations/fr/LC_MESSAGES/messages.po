@@ -119,6 +119,12 @@ msgstr "Date"
 msgid "Day (2 dives)"
 msgstr "Journée (2 plongées)"
 
+msgid "Delete inventory"
+msgstr "Supprimer l'inventaire"
+
+msgid "Delete this inventory ?"
+msgstr "Supprimer cet inventaire ?"
+
 msgid "Entry date"
 msgstr "Date d'entrée"
 
