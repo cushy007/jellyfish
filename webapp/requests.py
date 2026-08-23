@@ -508,6 +508,19 @@ def get_items_last_state(item_type):
 	return ret
 
 
+def get_item_last_state(item_id):
+	query = (ItemState
+		.select(ItemState.date, ItemState.is_present, ItemState.is_usable, ItemState.price, ItemState.comment)
+		.join(Item)
+		.where(Item.id == item_id)
+		.dicts()
+		.order_by(ItemState.date.desc())
+	)
+	for row in query:
+		return row
+	return {}
+
+
 SERVICING_PERIODICITY = timedelta(days=365)
 
 def get_serviced_items(item_type):

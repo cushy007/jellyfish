@@ -3,36 +3,31 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 #
 import logging
-from datetime import date, datetime
+from datetime import date
 from os import environ
 
 import peewee
 from flask import Blueprint, jsonify, redirect, request, send_from_directory, session, url_for
-from flask_babel import gettext as _
-from flask_babel import lazy_gettext as _l
+from flask_babel import gettext as _, lazy_gettext as _l
 from flask_login import login_required
+from webapp.requests import (DatabaseException, create_item, create_item_servicing, create_item_state, get_item,
+	get_item_last_state, get_item_type, get_item_type_and_reference, get_items, get_regulators,
+	get_running_inventory_date, trash_item, untrash_item)
+
+from webapp.forms import (CommonItemForm, ItemBcdForm, ItemBootForm, ItemComputerForm, ItemFinsForm, ItemFirstStageForm,
+	ItemHoodForm, ItemLampForm, ItemManometerForm, ItemMaskForm, ItemMonofinsForm, ItemOctopusForm, ItemSecondStageForm,
+	ItemSnorkleForm, ItemSuitForm, ItemTankForm, ItemWeightForm, ServicingForm, StateForm)
+from webapp.items import (GEAR, ITEM_TYPE_BACKPACK, ITEM_TYPE_BCD, ITEM_TYPE_BOOT, ITEM_TYPE_COMPUTER, ITEM_TYPE_FIN,
+	ITEM_TYPE_FIRST_STAGE, ITEM_TYPE_FIRST_STAGE_AUXILIARY, ITEM_TYPE_FRISBEE, ITEM_TYPE_GLOVE, ITEM_TYPE_HOOD,
+	ITEM_TYPE_LAMP, ITEM_TYPE_MANOMETER, ITEM_TYPE_MASK, ITEM_TYPE_MONOFIN, ITEM_TYPE_OCTOPUS, ITEM_TYPE_OXYMETER,
+	ITEM_TYPE_PREMISES_KEY, ITEM_TYPE_RING, ITEM_TYPE_SECOND_STAGE, ITEM_TYPE_SNORKLE, ITEM_TYPE_SOCK, ITEM_TYPE_SUCKER,
+	ITEM_TYPE_SUIT, ITEM_TYPE_TANK, ITEM_TYPE_WEIGHT)
+from webapp.models import Item, ItemState, Servicing
+from webapp.tables import ITEMS_COLUMNS
 from weblib.roles import ROLE_USER, roles_required
 from weblib.table import Table
 from weblib.views import crud_page, site
 
-from webapp.forms import (
-	CommonItemForm, ItemBcdForm, ItemBootForm, ItemComputerForm, ItemFinsForm, ItemFirstStageForm, ItemHoodForm,
-	ItemLampForm, ItemManometerForm, ItemMaskForm, ItemMonofinsForm, ItemOctopusForm, ItemSecondStageForm, ItemSnorkleForm,
-	ItemSuitForm, ItemTankForm, ItemWeightForm, ServicingForm, StateForm
-)
-from webapp.items import (
-	GEAR, ITEM_TYPE_BACKPACK, ITEM_TYPE_BCD, ITEM_TYPE_BOOT, ITEM_TYPE_COMPUTER, ITEM_TYPE_FIN, ITEM_TYPE_FIRST_STAGE,
-	ITEM_TYPE_FIRST_STAGE_AUXILIARY, ITEM_TYPE_FRISBEE, ITEM_TYPE_GLOVE, ITEM_TYPE_HOOD, ITEM_TYPE_LAMP,
-	ITEM_TYPE_MANOMETER, ITEM_TYPE_MASK, ITEM_TYPE_MONOFIN, ITEM_TYPE_OCTOPUS, ITEM_TYPE_OXYMETER, ITEM_TYPE_PREMISES_KEY,
-	ITEM_TYPE_RING, ITEM_TYPE_SECOND_STAGE, ITEM_TYPE_SNORKLE, ITEM_TYPE_SOCK, ITEM_TYPE_SUCKER, ITEM_TYPE_SUIT,
-	ITEM_TYPE_TANK, ITEM_TYPE_WEIGHT
-)
-from webapp.models import Item, ItemState, Servicing
-from webapp.requests import (
-	DatabaseException, create_item, create_item_servicing, create_item_state, get_item, get_item_type,
-	get_item_type_and_reference, get_items, get_regulators, get_running_inventory_date, trash_item, untrash_item
-)
-from webapp.tables import ITEMS_COLUMNS
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -271,8 +266,8 @@ def item_modify():
 @gear_views.route('/gear/item/add_state', methods=['GET', 'POST'])
 @roles_required(ROLE_USER)
 def item_add_state():
-	form = StateForm()
 	if request.method == 'GET':
+		form = StateForm(get_item_last_state(request.args['id']))
 		form.item_id.data = request.args['id']
 		running_inventory_date = get_running_inventory_date()
 		if running_inventory_date:
@@ -281,6 +276,7 @@ def item_add_state():
 		else:
 			form.date.data = date.today()
 	else:
+		form = StateForm()
 		if not form.validate():
 			_LOGGER.info("Displaying errors for item '%s'", form.item_id.data)
 		else:

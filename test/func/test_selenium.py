@@ -589,19 +589,49 @@ class TestItemState(JellyfishFixtures):
 		sleep(2)  # FIXME use selenium-ready
 		assert len(self.driver.find_elements(By.CSS_SELECTOR, 'table[name="state"] tbody tr')) == 1
 		assert self.get_table_field("state", 1, 2) == "Oui"
+		assert self.get_table_field("state", 1, 3) == "Oui"
 		assert self.get_table_field("state", 1, 4) == "200.00"
 		assert self.get_table_field("state", 1, 5) == "En bon état :)"
 
+		## Update the state
 		self.click_table_row("state", 1)
 		self.click_modal_button("update")
 		self.checkbox("is_present", False)
 		self.submit()
+		assert self.get_table_field("state", 1, 1) == date.today().strftime("%d/%m/%Y")
 		assert self.get_table_field("state", 1, 2) == "Non"
+		assert self.get_table_field("state", 1, 3) == "Oui"
+		assert self.get_table_field("state", 1, 4) == "200.00"
+		assert self.get_table_field("state", 1, 5) == "En bon état :)"
 
+		## Create a new state tomorrow (default values are the ones of the previous state)
+		self.switch_to_tab("gear", "stabilization", "bcd")
+		self.click_gear_table_row_by_item_ref(2)
+		self.click_modal_button("state")
+		self.fill_form({
+			'date': dt.datetime.now() + timedelta(days=1),
+		})
+		sleep(3)
+		self.switch_to_tab("gear", "stabilization", "bcd")
+		self.click_gear_table_row_by_item_ref(2)
+		self.click_modal_button("info")
+		sleep(3)
+		assert self.get_table_field("state", 1, 1) == date.today().strftime("%d/%m/%Y")
+		assert self.get_table_field("state", 1, 2) == "Non"
+		assert self.get_table_field("state", 1, 3) == "Oui"
+		assert self.get_table_field("state", 1, 4) == "200.00"
+		assert self.get_table_field("state", 1, 5) == "En bon état :)"
+		assert self.get_table_field("state", 2, 1) == (date.today() + timedelta(days=1)).strftime("%d/%m/%Y")
+		assert self.get_table_field("state", 2, 2) == "Non"
+		assert self.get_table_field("state", 2, 3) == "Oui"
+		assert self.get_table_field("state", 2, 4) == "200.00"
+		assert self.get_table_field("state", 2, 5) == "En bon état :)"
+
+		# Delete
 		self.click_table_row("state", 1)
 		self.click_modal_button("del", with_confirmation=True)
 		sleep(2)
-		assert len(self.driver.find_elements(By.CSS_SELECTOR, 'table[name="state"] tbody tr')) == 0
+		assert len(self.driver.find_elements(By.CSS_SELECTOR, 'table[name="state"] tbody tr')) == 1
 
 
 class TestServicing(JellyfishFixtures):
@@ -774,7 +804,7 @@ class TestInventory(JellyfishFixtures):
 		self.add_item_state("stabilization", "bcd", 1, is_usable=False, date=dt.datetime.now() - timedelta(days=1))
 		self.assert_bcd1_unavailable()
 
-		# Do an inventory, the item is now available
+		# Do an inventory and make the item available
 		self.switch_to_tab("inventory")
 		self.click_element_by_id("btn-start-campaign")
 		self.add_item_state("stabilization", "bcd", 1)
@@ -783,7 +813,7 @@ class TestInventory(JellyfishFixtures):
 		self.click_element_by_id("btn-stop-campaign")
 		self.assert_bcd1_available()
 
-		# The item becomes unavailable after the inventory
+		# The item will be broken again tomorrow
 		self.add_item_state("stabilization", "bcd", 1, is_usable=False, date=dt.datetime.now() + timedelta(days=1))
 		assert self.get_table_field("gear", 1, 1) == "1"
 		self.assert_bcd1_unavailable()
