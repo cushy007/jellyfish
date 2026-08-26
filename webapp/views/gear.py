@@ -272,7 +272,7 @@ def item_add_state():
 		running_inventory_date = get_running_inventory_date()
 		if running_inventory_date:
 			form.date.data = running_inventory_date
-			form.date.render_kw = {'readonly': True}  # FIXME handle this in my forms
+			form.date.readonly = True
 		else:
 			form.date.data = date.today()
 	else:
