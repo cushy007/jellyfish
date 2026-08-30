@@ -23,6 +23,7 @@ from webapp.items import (GEAR, ITEM_TYPE_BACKPACK, ITEM_TYPE_BCD, ITEM_TYPE_BOO
 	ITEM_TYPE_PREMISES_KEY, ITEM_TYPE_RING, ITEM_TYPE_SECOND_STAGE, ITEM_TYPE_SNORKLE, ITEM_TYPE_SOCK, ITEM_TYPE_SUCKER,
 	ITEM_TYPE_SUIT, ITEM_TYPE_TANK, ITEM_TYPE_WEIGHT)
 from webapp.models import Item, ItemState, Servicing
+from webapp.roles import ROLE_LENDER
 from webapp.tables import ITEMS_COLUMNS
 from weblib.roles import ROLE_USER, roles_required
 from weblib.table import Table
@@ -264,7 +265,7 @@ def item_modify():
 
 
 @gear_views.route('/gear/item/add_state', methods=['GET', 'POST'])
-@roles_required(ROLE_USER)
+@roles_required(ROLE_USER, ROLE_LENDER)
 def item_add_state():
 	if request.method == 'GET':
 		form = StateForm(get_item_last_state(request.args['id']))

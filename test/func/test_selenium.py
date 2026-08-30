@@ -687,6 +687,22 @@ class TestInventory(JellyfishFixtures):
 	def test01a(self, start_app, users, many_items, start_driver):
 		""" Do a first inventory campaign """
 		self.login_as('gilmour')
+
+		# First create a lender who will do the inventory supervised by a user
+		self.click_element_by_id("dropdown-user")
+		self.click_element_by_id("href-page-users")
+		self.click_element_by_id("btn-create-users")
+		self.fill_form({
+			'username': "scubadiver",
+			'last_name': "Scuba",
+			'first_name': "Diver",
+			'password': "1234",
+			'password_confirmation': "1234",
+			'roles': ROLE_LENDER,
+		})
+		self.logout()
+		self.login_as('scubadiver', passwd="1234")
+
 		self.switch_to_tab("inventory")
 
 		self.click_element_by_id("btn-start-campaign")
