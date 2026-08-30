@@ -327,7 +327,7 @@ msgid "Number of present items"
 msgstr "Nombre d'articles présents"
 
 msgid "Octopus"
-msgstr "Octopus"
+msgstr "Octopus (second stage)"
 
 msgid "Orphans"
 msgstr "Démontés"
