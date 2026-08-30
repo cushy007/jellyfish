@@ -694,6 +694,8 @@ def get_uninventoried_items(at_date):
 		.where(
 			(~fn.EXISTS(subq))
 			& (Item.type != ITEM_TYPE_SECOND_STAGE)
+			& (Item.type != ITEM_TYPE_OCTOPUS)
+			& (Item.is_trashed == False)
 		)
 		.order_by(Item.type, Item.reference)
 		.distinct()
