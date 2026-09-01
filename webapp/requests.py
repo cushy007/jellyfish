@@ -614,6 +614,7 @@ def get_inventory_items_select_list(date, selected_item_type=""):
 			& (Item.type != ITEM_TYPE_MANOMETER)
 			& (Item.type != ITEM_TYPE_SECOND_STAGE)
 			& (Item.type != ITEM_TYPE_OCTOPUS)
+			& (Item.owner_club != "BUC")  # FIXME
 		)
 		.group_by(Item.type)
 		.order_by(SQL('sorting_func'))
@@ -645,6 +646,7 @@ def get_current_inventory_remaining_items(item_type):
 		.where(
 			(Item.type == item_type)
 			& (Item.is_trashed == False)
+			& (Item.owner_club != "BUC")  # FIXME
 			& (~fn.EXISTS(subq))
 		)
 		.order_by(Item.reference)
@@ -695,6 +697,7 @@ def get_uninventoried_items(at_date):
 			(~fn.EXISTS(subq))
 			& (Item.type != ITEM_TYPE_SECOND_STAGE)
 			& (Item.type != ITEM_TYPE_OCTOPUS)
+			& (Item.owner_club != "BUC")  # FIXME
 			& (Item.is_trashed == False)
 		)
 		.order_by(Item.type, Item.reference)
