@@ -600,7 +600,7 @@ class TestItemState(JellyfishFixtures):
 		self.submit()
 		assert self.get_table_field("state", 1, 1) == date.today().strftime("%d/%m/%Y")
 		assert self.get_table_field("state", 1, 2) == "Non"
-		assert self.get_table_field("state", 1, 3) == "Oui"
+		assert self.get_table_field("state", 1, 3) == "Non"  # Setting as not present will automatically set as not usable
 		assert self.get_table_field("state", 1, 4) == "200.00"
 		assert self.get_table_field("state", 1, 5) == "En bon état :)"
 
@@ -618,12 +618,12 @@ class TestItemState(JellyfishFixtures):
 		sleep(3)
 		assert self.get_table_field("state", 1, 1) == date.today().strftime("%d/%m/%Y")
 		assert self.get_table_field("state", 1, 2) == "Non"
-		assert self.get_table_field("state", 1, 3) == "Oui"
+		assert self.get_table_field("state", 1, 3) == "Non"
 		assert self.get_table_field("state", 1, 4) == "200.00"
 		assert self.get_table_field("state", 1, 5) == "En bon état :)"
 		assert self.get_table_field("state", 2, 1) == (date.today() + timedelta(days=1)).strftime("%d/%m/%Y")
 		assert self.get_table_field("state", 2, 2) == "Non"
-		assert self.get_table_field("state", 2, 3) == "Oui"
+		assert self.get_table_field("state", 2, 3) == "Non"
 		assert self.get_table_field("state", 2, 4) == "200.00"
 		assert self.get_table_field("state", 2, 5) == "En bon état :)"
 

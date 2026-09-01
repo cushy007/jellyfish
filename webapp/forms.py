@@ -319,12 +319,17 @@ class MemberForm(BaseForm):
 			# ~ raise validators.ValidationError('Name must be more than 50 characters')
 
 
+def validate_is_usable(form, field_data_):
+	if not form.is_present.data:
+		form.is_usable.data = False
+
+
 class StateForm(BaseForm):
 	fields = {
 		'item_id': HiddenField(),
 		'date': DateField(ItemState, required=True, default="now"),
 		'is_present': BooleanField(ItemState, default=True),
-		'is_usable': BooleanField(ItemState, default=True),
+		'is_usable': BooleanField(ItemState, default=True, validators=(validate_is_usable, )),
 		'price':  PriceField(ItemState, default=0),
 		'comment': TextAreaField(ItemState),
 	}
