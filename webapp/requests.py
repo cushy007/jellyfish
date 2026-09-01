@@ -29,7 +29,6 @@ class InventoryException(Exception):
 	pass
 
 
-def create_item_state(**kwargs): ItemState.create(**kwargs)
 def create_item_servicing(**kwargs): Servicing.create(**kwargs)
 def create_servicing(**kwargs): Servicing.create(**kwargs)
 def create_is_composed_of(**kwargs): IsComposedOf.create(**kwargs)
@@ -481,6 +480,16 @@ def get_items_count_table(inventory_date):
 		.tuples()
 	)
 	return [(translate_field(row[0], model_field=Item.type, is_internationalizable=True), row[1]) for row in query]
+
+
+########################################################################################################################
+################################################# Items states #########################################################
+########################################################################################################################
+def create_item_state(**kwargs):
+	try:
+		ItemState.create(**kwargs)
+	except IntegrityError:
+		raise  # TODO
 
 
 def get_item_states_dates():

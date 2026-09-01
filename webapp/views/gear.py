@@ -6,7 +6,7 @@ import logging
 from datetime import date
 from os import environ
 
-import peewee
+from peewee import IntegrityError
 from flask import Blueprint, jsonify, redirect, request, send_from_directory, session, url_for
 from flask_babel import gettext as _, lazy_gettext as _l
 from flask_login import login_required
@@ -27,7 +27,7 @@ from webapp.roles import ROLE_LENDER
 from webapp.tables import ITEMS_COLUMNS
 from weblib.roles import ROLE_USER, roles_required
 from weblib.table import Table
-from weblib.views import crud_page, site
+from weblib.views import crud_page, render_page_error, site
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -146,7 +146,7 @@ def gear_add_item(group, item_type):
 		_LOGGER.info("Adding to the database the item '%s' ", form.dict)
 		try:
 			create_item(**form.dict)
-		except peewee.IntegrityError as e:  # FIXME
+		except IntegrityError as e:  # FIXME
 			form.reference.error_messages = [str(e)]
 		else:
 			return redirect('/gear/%s/%s' % (group, item_type))
@@ -282,8 +282,13 @@ def item_add_state():
 			_LOGGER.info("Displaying errors for item '%s'", form.item_id.data)
 		else:
 			_LOGGER.info("Add a state '%s' to the database", form.dict)
-			create_item_state(**form.dict)
-			return redirect(session.get('prev_url') or "/gear/%s/%s" % get_group_and_type(form.item_id.data))  # prev_url is for setting states while in an inventory
+			try:
+				create_item_state(**form.dict)
+			except IntegrityError as e:  # FIXME
+				#form.date.error_messages = [str(e)] TODO like above
+				return render_page_error(error_text=f"A state already exists for date '{form.date.data}'. Please modify it.")
+			else:
+				return redirect(session.get('prev_url') or "/gear/%s/%s" % get_group_and_type(form.item_id.data))  # prev_url is for setting states while in an inventory
 	return render_gear_page("gear/item/add_state.html",
 		*get_group_and_type(form.item_id.data),
 		form=form,

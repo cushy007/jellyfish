@@ -581,7 +581,7 @@ class TestItemState(JellyfishFixtures):
 		self.login_as('gilmour')
 		self.add_item_state("stabilization", "bcd", 2, price=200, comment="En bon état :)")
 		self.add_item_state("stabilization", "bcd", 2, price=300, comment="ooops, can't have two states on the same day")
-		self.is_server_error()
+		self.is_server_error(error_text="A state already exists for date")
 
 		self.switch_to_tab("gear", "stabilization", "bcd")
 		self.click_gear_table_row_by_item_ref(2)
